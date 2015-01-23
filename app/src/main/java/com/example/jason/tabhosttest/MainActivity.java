@@ -6,6 +6,8 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TabHost;
 import android.widget.TextView;
 
@@ -53,6 +55,7 @@ public class MainActivity extends TabActivity {
             tv2.setTextColor(Color.WHITE);
         }
 
+        //Change tab colour based on current tab
         tabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
             public void onTabChanged(String tabId) {
                 switch (getTabHost().getCurrentTab()) {

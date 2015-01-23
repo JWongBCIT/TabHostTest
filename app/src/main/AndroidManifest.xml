@@ -16,13 +16,20 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-
-        <activity android:name=".Act1"> </activity>
-        <activity android:name=".Act2"> </activity>
-        <activity android:name=".Act3"> </activity>
+        <activity android:name=".Act1" >
+        </activity>
+        <activity android:name=".Act2" >
+        </activity>
+        <activity android:name=".Act3" >
+        </activity>
+        <activity
+            android:name=".MainActivity2"
+            android:label="@string/title_activity_main_activity2" >
+        </activity>
+        <activity
+            android:name=".activity_1"
+            android:label="@string/title_activity_activity_1" >
+        </activity>
     </application>
-
-
 
 </manifest>
