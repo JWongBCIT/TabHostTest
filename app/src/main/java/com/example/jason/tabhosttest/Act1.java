@@ -15,7 +15,7 @@ public class Act1 extends Activity
 
         //Add listview of usernames
         ListView lView = (ListView) findViewById(R.id.userList);
-        String[] tempList = new String[]{"Adam H", "Langaditis Speridon", "Jason W"};
+        String[] tempList = new String[]{"Adam H", "Langaditis Speridon", "Jason W", "Joe Smith", "Bob Ross", "Timmy Lin", "Nicholas Cage"};
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, tempList);
         lView.setAdapter(adapter);
     }

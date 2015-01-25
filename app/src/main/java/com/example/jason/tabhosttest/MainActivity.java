@@ -30,10 +30,10 @@ public class MainActivity extends TabActivity {
 
         // Set the Tab name and Activity
         // that will be opened when particular Tab will be selected
-        tab1.setIndicator("Chats");
+        tab1.setIndicator("Users");
         tab1.setContent(new Intent(this, Act1.class));
 
-        tab2.setIndicator("Users");
+        tab2.setIndicator("Chats");
         tab2.setContent(new Intent(this, Act2.class));
 
         tab3.setIndicator("Settings");
