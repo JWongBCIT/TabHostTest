@@ -2,6 +2,7 @@ package com.example.jason.tabhosttest;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 
@@ -13,7 +14,7 @@ public class SplashActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        int myTimer = 10000;
+        int myTimer = 3000;
         new Handler().postDelayed(new Runnable() {
 
             @Override

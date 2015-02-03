@@ -2,7 +2,11 @@
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
+        <item name="android:actionBarStyle">@style/ActionBar</item>
     </style>
+    <style name="ActionBar" parent="AppTheme">
+        <item name="android:background">#6441a5</item>
+    </style>
+
 
 </resources>

@@ -2,11 +2,10 @@ package com.example.jason.tabhosttest;
 import android.app.Activity;
 import android.app.ListActivity;
 import android.os.Bundle;
-import android.view.Gravity;
-import android.widget.ArrayAdapter;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
-import android.widget.TextView;
+
 
 import java.util.ArrayList;
 
@@ -35,7 +34,18 @@ public class Act2 extends ListActivity
             users.add(u);
         }
 
-        setListAdapter(new MyAdapter(this, users));
+        MyAdapter ad = new MyAdapter(this, users);
+        /*lView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+
+            }
+        });*/
+        setListAdapter(ad);
 
     }
+    /*public void chat(String name){
+        Intent chat = new Intent(this ,Chat.class);
+        chat.putExtra("name" ,name);
+        startActivity(chat);
+    }*/
 }
