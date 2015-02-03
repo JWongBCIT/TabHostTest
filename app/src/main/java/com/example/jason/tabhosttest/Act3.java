@@ -9,12 +9,11 @@ public class Act3 extends Activity
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.three_act);
 
-        TextView tv=new TextView(this);
-        tv.setTextSize(25);
-        tv.setGravity(Gravity.CENTER_VERTICAL);
-        tv.setText("This Is Tab3 Activity");
 
-        setContentView(tv);
+
+
+
     }
 }
