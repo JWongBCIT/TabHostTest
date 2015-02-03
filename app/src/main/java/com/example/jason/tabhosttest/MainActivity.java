@@ -40,7 +40,7 @@ public class MainActivity extends TabActivity {
         tab3.setContent(new Intent(this, Act3.class));
 
 
-        /** Add the tabs  to the TabHost to display. */
+        //Add the tabs to the TabHost to display.
         tabHost.addTab(tab1);
         tabHost.addTab(tab2);
         tabHost.addTab(tab3);
@@ -57,7 +57,7 @@ public class MainActivity extends TabActivity {
 
         //Change tab colour based on current tab
         tabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
-            public void onTabChanged(String tabId) {
+            public void onTabChanged(String tabId) {    
                 switch (getTabHost().getCurrentTab()) {
                     case 0:
                         for (int i = 1; i < 3; i++) {
