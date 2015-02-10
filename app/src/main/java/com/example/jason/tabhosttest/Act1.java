@@ -1,4 +1,5 @@
 package com.example.jason.tabhosttest;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,10 +12,9 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-public class Act1 extends Activity
-{
+public class Act1 extends Activity {
     @Override
-    public void onCreate(Bundle savedInstanceState){
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.one_act);
 
@@ -25,20 +25,20 @@ public class Act1 extends Activity
 
 
         lView.setOnItemClickListener(new OnItemClickListener() {
-                                         public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-                                            chat(lView.getAdapter().getItem(arg2).toString());
-                                         }
+            public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+                chat(lView.getAdapter().getItem(arg2).toString());
+            }
 
-                                     });
+        });
 
 
-                lView.setAdapter(adapter);
+        lView.setAdapter(adapter);
 
     }
 
-    public void chat(String name){
-        Intent chat = new Intent(this ,Chat.class);
-        chat.putExtra("name" ,name);
+    public void chat(String name) {
+        Intent chat = new Intent(this, Chat.class);
+        chat.putExtra("name", name);
         startActivity(chat);
     }
 }
