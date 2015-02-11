@@ -6,8 +6,7 @@
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme">
-
+        android:theme="@style/AppTheme" >
         <activity android:name=".MainActivity" />
         <activity
             android:name=".SplashActivity"
@@ -22,10 +21,13 @@
         <activity android:name=".Act2" />
         <activity android:name=".Act3" />
         <activity
-            android:name=".Chat"
-            android:label="@string/title_activity_chat"
+
+            android:name=".ChatBubbleActivity"
+            android:label="@string/title_activity_chat_bubble"
             android:parentActivityName=".Act1"
+            android:windowSoftInputMode="stateHidden"
             >
+
         </activity>
     </application>
 
