@@ -3,14 +3,11 @@ package com.example.jason.tabhosttest;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.View;
-import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
 
 public class Act1 extends Activity {
     @Override
@@ -20,7 +17,7 @@ public class Act1 extends Activity {
 
         //Add listview of usernames
         final ListView lView = (ListView) findViewById(R.id.userList);
-        String[] tempList = new String[]{"Adam H", "Langaditis Speridon", "Jason W", "Joe Smith", "Bob Ross", "Timmy Lin", "Nicolas Cage"};
+        String[] tempList = new String[]{"Adam H", "Langaditis Speridon", "Jason W", "Joe Smith", "Bob Ross", "Timmy Lin", "Nicolas Cage", "Bob Jam" , "Jerry Chen" , "Tyler Mo", "Spereo Huang"};
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, tempList);
 
 
@@ -37,7 +34,7 @@ public class Act1 extends Activity {
     }
 
     public void chat(String name) {
-        Intent chat = new Intent(this, Chat.class);
+        Intent chat = new Intent(this, ChatBubbleActivity.class);
         chat.putExtra("name", name);
         startActivity(chat);
     }

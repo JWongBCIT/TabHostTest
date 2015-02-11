@@ -1,9 +1,6 @@
 package com.example.jason.tabhosttest;
-import android.app.Activity;
 import android.app.ListActivity;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ListView;
 
 
@@ -16,13 +13,11 @@ public class Act2 extends ListActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.two_act);
 
-        ListView lView = (ListView) findViewById(R.id.userList);
-
         //Create arrays to hold user data
-        String[] userList = new String[]{"Adam H", "Langaditis Speridon", "Jason W", "Nicolas Cage", "Timmy Lin"};
-        String[] msgList = new String[]{"I wanna do something cool m8!", "Wanna get a Klean Kanteen bottle?", "How fun is Android", "I'm a great actor :)", "Meet up for coffee later??"};
+        String[] userList = new String[]{"Adam H", "Langaditis Speridon", "Jason W", "Joe Smith", "Bob Ross", "Timmy Lin", "Nicolas Cage", "Bob Jam" };
+        String[] msgList = new String[]{"I wanna do something cool m8!", "Wanna get a Klean Kanteen bottle?", "How fun is Android", "I'm a great actor :)", "Meet up for coffee later??" , "hey" , "yo" , "m8"};
 
-        ArrayList<User> users = new ArrayList<User>();
+        ArrayList<User> users = new ArrayList<>();
         User u;
 
         //Copy data into User array
