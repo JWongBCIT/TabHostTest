@@ -17,7 +17,7 @@ public class Act3 extends Activity
 
     //push test lol
     }
-    public void onClick(View view){
+  public void onClick(View view){
        final MediaPlayer mp = MediaPlayer.create(this, R.raw.bleat);
 
        // Button zero = (Button) this.findViewById(R.id.checkBox);
