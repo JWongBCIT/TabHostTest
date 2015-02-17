@@ -1,15 +1,23 @@
 package com.example.jason.tabhosttest;
 
 import android.app.TabActivity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TabHost;
 import android.widget.TextView;
+
+import java.io.IOException;
 
 public class MainActivity extends TabActivity {
     // create the TabHost that will contain the Tabs
@@ -57,7 +65,7 @@ public class MainActivity extends TabActivity {
 
         //Change tab colour based on current tab
         tabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
-            public void onTabChanged(String tabId) {    
+            public void onTabChanged(String tabId) {
                 switch (getTabHost().getCurrentTab()) {
                     case 0:
                         for (int i = 1; i < 3; i++) {
@@ -98,5 +106,7 @@ public class MainActivity extends TabActivity {
                 }
             }
         });
+
+
     }
 }

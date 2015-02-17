@@ -1,7 +1,12 @@
 package com.example.jason.tabhosttest;
 
+import android.content.Context;
 import android.content.Intent;
 import android.database.DataSetObserver;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.KeyEvent;
@@ -11,6 +16,8 @@ import android.widget.AbsListView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+
+import java.io.IOException;
 
 public class ChatBubbleActivity extends ActionBarActivity {
     private static final String TAG = "ChatActivity";
@@ -75,9 +82,10 @@ public class ChatBubbleActivity extends ActionBarActivity {
         side = !side;
         return true;
     }
-    public void looseFocus(View view){
+    public void looseFocus(View view) {
         EditText e = (EditText) findViewById(R.id.chatText);
         e.clearFocus();
     }
 
-}
+ }
+

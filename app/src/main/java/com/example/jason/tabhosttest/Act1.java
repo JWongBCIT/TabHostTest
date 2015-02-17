@@ -2,11 +2,13 @@ package com.example.jason.tabhosttest;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 
 public class Act1 extends Activity {
@@ -24,6 +26,8 @@ public class Act1 extends Activity {
         lView.setOnItemClickListener(new OnItemClickListener() {
             public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
                 chat(lView.getAdapter().getItem(arg2).toString());
+                final MediaPlayer mp = MediaPlayer.create(Act1.this, R.raw.bleat);
+                mp.start();
             }
 
         });
