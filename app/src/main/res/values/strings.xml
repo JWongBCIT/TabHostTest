@@ -9,5 +9,10 @@
     <string name="title_activity_chat">Chat</string>
     <string name="send">Send</string>
     <string name="title_activity_chat_bubble">ChatBubbleActivity</string>
+    <string name="title_activity_sign_up">signUp</string>
+    <string name="sign_up">Sign up</string>
+    <string name="sign_up_button">Sign up!</string>
+    <string name="password">Password</string>
+    <string name="username">Username:</string>
 
 </resources>

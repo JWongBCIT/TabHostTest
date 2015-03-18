@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.jason.tabhosttest" >
-
+    <uses-permission android:name="android.permission.INTERNET" />
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
@@ -21,13 +21,14 @@
         <activity android:name=".Act2" />
         <activity android:name=".Act3" />
         <activity
-
             android:name=".ChatBubbleActivity"
             android:label="@string/title_activity_chat_bubble"
             android:parentActivityName=".Act1"
-            android:windowSoftInputMode="stateHidden"
-            >
-
+            android:windowSoftInputMode="stateHidden" >
+        </activity>
+        <activity
+            android:name=".signUp"
+            android:label="@string/title_activity_sign_up" >
         </activity>
     </application>
 
