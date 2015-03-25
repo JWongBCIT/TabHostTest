@@ -1,46 +1,43 @@
 package com.example.jason.tabhosttest;
-import android.app.ListActivity;
+
+import android.app.Activity;
+import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+public class Act2 extends Activity {
+    public static MediaPlayer mp;
 
-import java.util.ArrayList;
-
-public class Act2 extends ListActivity
-{
-    @Override
-    public void onCreate(Bundle savedInstanceState){
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.two_act);
 
-        //Create arrays to hold user data
-        String[] userList = new String[]{"Adam H", "Langaditis Speridon", "Jason W", "Joe Smith", "Bob Ross", "Timmy Lin", "Nicolas Cage", "Bob Jam" };
-        String[] msgList = new String[]{"I wanna do something cool m8!", "Wanna get a Klean Kanteen bottle?", "How fun is Android", "I'm a great actor :)", "Meet up for coffee later??" , "hey" , "yo" , "m8"};
+        if(Act3.a == false)
+            mp = MediaPlayer.create(Act2.this, R.raw.bleat);
 
-        ArrayList<User> users = new ArrayList<>();
-        User u;
+        //Add listview of usernames
+        final ListView lView = (ListView) findViewById(R.id.chatTextList);
+        String[] tempList = {""};
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, tempList);
 
-        //Copy data into User array
-        for(int i = 0; i < userList.length; i++){
-            u = new User();
-            u.setName(userList[i]);
-            u.setMessage(msgList[i]);
-
-            users.add(u);
-        }
-
-        MyAdapter ad = new MyAdapter(this, users);
-        /*lView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        lView.setOnItemClickListener(new OnItemClickListener() {
             public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-
+                chat(lView.getAdapter().getItem(arg2).toString());
+               if(Act3.a == true)
+                    mp.start();
             }
-        });*/
-        setListAdapter(ad);
 
+        });
+        lView.setAdapter(adapter);
     }
-    /*public void chat(String name){
-        Intent chat = new Intent(this ,Chat.class);
-        chat.putExtra("name" ,name);
+    public void chat(String name) {
+        Intent chat = new Intent(this, ChatBubbleActivity.class);
+        chat.putExtra("name", name);
         startActivity(chat);
-    }*/
+    }
 }

@@ -11,6 +11,7 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpPut;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -221,7 +222,11 @@ public class Mongo {
         {
             if (result != null)
             {
-                context.processResult(result);
+                try {
+                    context.processResult(result);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
         }
 

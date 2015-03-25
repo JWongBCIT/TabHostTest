@@ -21,7 +21,6 @@ import java.io.IOException;
 
 public class MainActivity extends TabActivity {
     // create the TabHost that will contain the Tabs
-
     /**
      * Called when the activity is first created.
      */
@@ -29,6 +28,8 @@ public class MainActivity extends TabActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Intent intent = getIntent();
+        String[] userStringArr = intent.getStringArrayExtra("users");
 
         TabHost tabHost = (TabHost) findViewById(android.R.id.tabhost);
 
@@ -39,7 +40,9 @@ public class MainActivity extends TabActivity {
         // Set the Tab name and Activity
         // that will be opened when particular Tab will be selected
         tab1.setIndicator("Users");
-        tab1.setContent(new Intent(this, Act1.class));
+        Intent users = new Intent(this, Act1.class);
+        users.putExtra("users" , userStringArr);
+        tab1.setContent(users);
 
         tab2.setIndicator("Chats");
         tab2.setContent(new Intent(this, Act2.class));

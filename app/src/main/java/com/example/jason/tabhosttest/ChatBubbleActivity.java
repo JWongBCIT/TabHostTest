@@ -1,12 +1,9 @@
 package com.example.jason.tabhosttest;
 
-import android.content.Context;
 import android.content.Intent;
 import android.database.DataSetObserver;
-import android.media.AudioManager;
-import android.media.MediaPlayer;
-import android.media.RingtoneManager;
-import android.net.Uri;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.KeyEvent;
@@ -16,8 +13,6 @@ import android.widget.AbsListView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-
-import java.io.IOException;
 
 public class ChatBubbleActivity extends ActionBarActivity {
     private static final String TAG = "ChatActivity";
@@ -33,12 +28,14 @@ public class ChatBubbleActivity extends ActionBarActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        android.support.v7.app.ActionBar bar = getSupportActionBar();
+        bar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#6441a5")));
         Intent i = getIntent();
         setContentView(R.layout.activity_chat);
-
         Intent call = getIntent();
         String s = call.getStringExtra("name");
         setTitle(s);
+
 
         buttonSend = (Button) findViewById(R.id.buttonSend);
 

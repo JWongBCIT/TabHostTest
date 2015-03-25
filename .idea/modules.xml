@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Bump Update.iml" filepath="$PROJECT_DIR$/Bump Update.iml" />
       <module fileurl="file://$PROJECT_DIR$/BumpLatest.iml" filepath="$PROJECT_DIR$/BumpLatest.iml" />
-      <module fileurl="file://$PROJECT_DIR$/ProjectGood.iml" filepath="$PROJECT_DIR$/ProjectGood.iml" />
-      <module fileurl="file://$PROJECT_DIR$/TabHostTest.iml" filepath="$PROJECT_DIR$/TabHostTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

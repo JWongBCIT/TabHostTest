@@ -2,7 +2,8 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:background="#6441a5">
+    android:background="#6441a5"
+    android:id="@+id/activity_splash">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -18,7 +19,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Find people around you"
+        android:text="IM Service"
         android:id="@+id/textView2"
         android:textColor="#FFFFFF"
         android:layout_alignParentBottom="true"
@@ -30,6 +31,6 @@
         android:layout_height="wrap_content"
         android:id="@+id/imageView"
         android:src="@drawable/bump_logo"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />/>
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/textView2" />/>
 </RelativeLayout>
