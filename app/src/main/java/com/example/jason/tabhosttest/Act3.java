@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 public class Act3 extends Activity
 {
+    //final MediaPlayer mp = MediaPlayer.create(Act3.this, R.raw.bleat);
+    boolean a = true;
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -18,9 +20,16 @@ public class Act3 extends Activity
     //push test lol
     }
   public void onClick(View view){
-       final MediaPlayer mp = MediaPlayer.create(this, R.raw.bleat);
-
+   // mplayer m = new mplayer();
+    //  m.begin();
+     // final MediaPlayer mp = MediaPlayer.create(Act3.this, R.raw.bleat);
+       if(a) {
+           Act1.mp.reset();
+           a = false;
+       }else if(!a){
+           Act1.mp = MediaPlayer.create(Act3.this, R.raw.bleat);
+       }
        // Button zero = (Button) this.findViewById(R.id.checkBox);
-                mp.start();
+               // mp.pause();
     }
 }

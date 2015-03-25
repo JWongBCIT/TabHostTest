@@ -12,11 +12,12 @@ import android.widget.Button;
 import android.widget.ListView;
 
 public class Act1 extends Activity {
-    @Override
+    public static MediaPlayer mp;
+
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.one_act);
-
+        mp = MediaPlayer.create(Act1.this, R.raw.bleat);
         //Add listview of usernames
         final ListView lView = (ListView) findViewById(R.id.userList);
         String[] tempList = new String[]{"Adam H", "Langaditis Speridon", "Jason W", "Joe Smith", "Bob Ross", "Timmy Lin", "Nicolas Cage", "Bob Jam" , "Jerry Chen" , "Tyler Mo", "Spereo Huang"};
@@ -26,8 +27,11 @@ public class Act1 extends Activity {
         lView.setOnItemClickListener(new OnItemClickListener() {
             public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
                 chat(lView.getAdapter().getItem(arg2).toString());
-                final MediaPlayer mp = MediaPlayer.create(Act1.this, R.raw.bleat);
+                //Act3 a = new Act3();
+
                 mp.start();
+               // final MediaPlayer mp = MediaPlayer.create(Act1.this, R.raw.bleat);
+
             }
 
         });
