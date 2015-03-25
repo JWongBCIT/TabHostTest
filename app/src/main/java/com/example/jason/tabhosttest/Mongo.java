@@ -22,24 +22,6 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URLEncoder;
 
-/**
- * Created by Nav Bhatti on 11/11/2014.
- *
- * Code is based on Lola Priego's Android app + MongoDB + MongoLab [cloud] blog post
- * modified using AsyncTasks to comply with Android's enforcement of non-blocking network calls
- * Original post can be found @ http://lolapriego.com/blog/android-app-mongodb-mongolab-cloud/
- *
- * All class methods can be used statically to make HTTP Requests to a MongoLab database
- * hosted in the cloud using the MongoDB REST API documented @ http://docs.mongolab.com/restapi/.
- * Class methods do not have mechanism for all the optional parameters illustrated in the
- * documentation, but can be easily modified to suit the needs of the application.
- *
- * Any Activities or Classes wishing to use this class must implement the MongoAdapter Interface
- * and pass themselves as the first parameter in each of the methods.
- *
- * @author Nav Bhatti
- * @author Lola Priego
- */
 public class Mongo {
 
     private static final String BASE_URL = "https://api.mongolab.com/api/1/databases/";

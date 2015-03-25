@@ -1,12 +1,5 @@
 package com.example.jason.tabhosttest;
 
-/**
- * Created by Nav on 11/15/2014.
- *
- * Interface must be implemented by any Activities or Classes which wish to use the Mongo.java
- * database driver and should be passed as the first argument whenever calling one of
- * Mongo's static methods.
- */
 public interface MongoAdapter {
 
     /**
