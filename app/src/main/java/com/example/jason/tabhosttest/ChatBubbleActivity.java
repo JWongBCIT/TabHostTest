@@ -13,29 +13,63 @@ import android.widget.AbsListView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+import java.io.InputStream;
 
-public class ChatBubbleActivity extends ActionBarActivity {
-    private static final String TAG = "ChatActivity";
-
+public class ChatBubbleActivity extends ActionBarActivity implements MongoAdapter {
     private ChatArrayAdapter chatArrayAdapter;
     private ListView listView;
     private EditText chatText;
     private Button buttonSend;
+    private String curName;
+    private String username;
 
-    Intent intent;
-    private boolean side = false;
+    @Override
+    public String dbName() {
+        return getResources().getString(R.string.DataBase);
+    }
 
+    @Override
+    public String apiKey() {
+        return getResources().getString(R.string.API_KEY);
+    }
+
+    @Override
+    public void processResult(String result) throws JSONException{
+        JSONArray jsonarr = new JSONArray(result);
+        for (int i = 0; i < jsonarr.length(); i++) {
+            JSONObject row = jsonarr.getJSONObject(i);
+            try {
+                String message = row.getString("message");
+                boolean user = row.getBoolean("user");
+                sendChatMessage(user, message);
+            }catch (JSONException e){
+
+            }
+        }
+
+    }
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         android.support.v7.app.ActionBar bar = getSupportActionBar();
         bar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#6441a5")));
-        Intent i = getIntent();
         setContentView(R.layout.activity_chat);
         Intent call = getIntent();
         String s = call.getStringExtra("name");
         setTitle(s);
+        try {
+            InputStream inputStream = openFileInput("user.txt");
+            java.util.Scanner scan = new java.util.Scanner(inputStream).useDelimiter("\\A");
+            username = scan.next();
 
+        }catch (Exception e){
+            e.printStackTrace();
+            finish();
+        }
+        curName = s;
 
         buttonSend = (Button) findViewById(R.id.buttonSend);
 
@@ -48,7 +82,7 @@ public class ChatBubbleActivity extends ActionBarActivity {
         chatText.setOnKeyListener(new OnKeyListener() {
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if ((event.getAction() == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER)) {
-                    return sendChatMessage();
+                    return sendChatMessage(false, chatText.getText().toString(), true);
                 }
                 return false;
             }
@@ -56,7 +90,7 @@ public class ChatBubbleActivity extends ActionBarActivity {
         buttonSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
-                sendChatMessage();
+                sendChatMessage(false, chatText.getText().toString() , true);
             }
         });
 
@@ -71,18 +105,32 @@ public class ChatBubbleActivity extends ActionBarActivity {
                 listView.setSelection(chatArrayAdapter.getCount() - 1);
             }
         });
+
+        Mongo.get(this, username+curName, new JSONObject());
     }
 
-    private boolean sendChatMessage(){
-        chatArrayAdapter.add(new ChatMessage(side, chatText.getText().toString()));
+    private boolean sendChatMessage(boolean side, String message){
+        chatArrayAdapter.add(new ChatMessage(side, message));
         chatText.setText("");
-        side = !side;
         return true;
     }
-    public void looseFocus(View view) {
-        EditText e = (EditText) findViewById(R.id.chatText);
-        e.clearFocus();
-    }
+    private boolean sendChatMessage(boolean side, String message, boolean New){
+        JSONObject message1 = new JSONObject();
+        JSONObject message2 = new JSONObject();
+        try {
+            message1.put("message" , chatText.getText().toString());
+            message1.put("user", false);
+            message2.put("message" , chatText.getText().toString());
+            message2.put("user", true);
+            Mongo.post(this,username+curName,message1);
+            Mongo.post(this,curName+username,message2);
 
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        chatArrayAdapter.add(new ChatMessage(side, message));
+        chatText.setText("");
+        return true;
+    }
  }
 
