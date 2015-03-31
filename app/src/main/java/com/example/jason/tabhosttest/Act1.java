@@ -19,6 +19,7 @@ public class Act1 extends Activity implements MongoAdapter {
     public static MediaPlayer mp;
     public String username;
     public String currName;
+    private boolean clicked = false;
 
     @Override
     public String dbName() {
@@ -80,6 +81,7 @@ public class Act1 extends Activity implements MongoAdapter {
 
         lView.setOnItemClickListener(new OnItemClickListener() {
             public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+
                 chat(lView.getAdapter().getItem(arg2).toString());
                 mp.start();
             }
@@ -91,13 +93,19 @@ public class Act1 extends Activity implements MongoAdapter {
 
     }
     public void chat(String name) {
-        try {
-            JSONObject json = new JSONObject();
-            json.put("user", name);
-            currName = name;
-            Mongo.get(this, username, json);
-        } catch (Exception e) {
-            e.printStackTrace();
+        if(!clicked) {
+            clicked = true;
+            try {
+                JSONObject json = new JSONObject();
+                json.put("user", name);
+                currName = name;
+                Mongo.get(this, username, json);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }finally {
+                clicked = false;
+
+            }
         }
     }
 }

@@ -176,7 +176,6 @@ public class ChatBubbleActivity extends ActionBarActivity implements MongoAdapte
 
     private boolean sendChatMessage(boolean side, String message) {
         chatArrayAdapter.add(new ChatMessage(side, message));
-        chatText.setText("");
         return true;
     }
 
