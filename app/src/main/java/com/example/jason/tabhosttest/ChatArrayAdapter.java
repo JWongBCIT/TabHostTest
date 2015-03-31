@@ -16,9 +16,9 @@ import java.util.List;
 
 public class ChatArrayAdapter extends ArrayAdapter {
 
-    private TextView chatText;
-    private List<ChatMessage> chatMessageList = new ArrayList();
-    private LinearLayout singleMessageContainer;
+    public TextView chatText;
+    public List<ChatMessage> chatMessageList = new ArrayList();
+    public LinearLayout singleMessageContainer;
 
     public void add(ChatMessage object) {
         chatMessageList.add(object);

@@ -8,19 +8,18 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
-import android.widget.Toast;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.util.ArrayList;
 
 public class Act1 extends Activity implements MongoAdapter {
     public static MediaPlayer mp;
+    public String username;
+    public String currName;
+
     @Override
     public String dbName() {
         return getResources().getString(R.string.DataBase);
@@ -32,23 +31,50 @@ public class Act1 extends Activity implements MongoAdapter {
     }
 
     @Override
-    public void processResult(String result) throws JSONException {
-        JSONArray jsonarr = null;
-        jsonarr = new JSONArray(result);
-        JSONObject json = jsonarr.getJSONObject(0);
-        if (json.getString("chat").equals("")) {
-        }
+    public void processResult(String result) {
+        try {
+            JSONArray jsonarr = new JSONArray(result);
+            JSONObject json = jsonarr.getJSONObject(0);
+            if (json.get("user").equals(currName)) {
 
+            }
+        } catch (JSONException e) {
+            JSONObject json2 = new JSONObject();
+            JSONObject json3 = new JSONObject();
+            try {
+                json2.put("user", currName);
+                Mongo.post(this, username, json2);
+                json3.put("user", username);
+                Mongo.post(this, currName, json3);
+                Mongo.post(this, currName+username, new JSONObject());
+                Mongo.post(this,username+currName, new JSONObject());
+
+            } catch (JSONException e1) {
+                e1.printStackTrace();
+            }
+        }
+        Intent chat = new Intent(this, ChatBubbleActivity.class);
+        chat.putExtra("name", currName);
+        startActivity(chat);
 
     }
+
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.one_act);
+        try {
+            InputStream inputStream = openFileInput("user.txt");
+            java.util.Scanner s = new java.util.Scanner(inputStream).useDelimiter("\\A");
+            username = s.next();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         Intent i = getIntent();
         mp = MediaPlayer.create(Act1.this, R.raw.bleat);
         //Add listview of usernames
         final ListView lView = (ListView) findViewById(R.id.userList);
-        String[] tempList = i.getStringArrayExtra("users");
+        ArrayList<String> List =  i.getStringArrayListExtra("users");
+        String [] tempList = List.toArray(new String[List.size()]);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, tempList);
 
 
@@ -56,7 +82,6 @@ public class Act1 extends Activity implements MongoAdapter {
             public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
                 chat(lView.getAdapter().getItem(arg2).toString());
                 mp.start();
-
             }
 
         });
@@ -65,21 +90,14 @@ public class Act1 extends Activity implements MongoAdapter {
         lView.setAdapter(adapter);
 
     }
-
     public void chat(String name) {
-        /*try {
-            InputStream inputStream = openFileInput("user.txt");
-            java.util.Scanner s = new java.util.Scanner(inputStream).useDelimiter("\\A");
-            String username = s.next();
+        try {
             JSONObject json = new JSONObject();
-            json.put("chat" , name);
-            Mongo.get(this,username, json);
-        }catch (Exception e){
+            json.put("user", name);
+            currName = name;
+            Mongo.get(this, username, json);
+        } catch (Exception e) {
             e.printStackTrace();
-        }*/
-
-        Intent chat = new Intent(this, ChatBubbleActivity.class);
-        chat.putExtra("name", name);
-        startActivity(chat);
+        }
     }
 }

@@ -1,38 +1,41 @@
 package com.example.jason.tabhosttest;
 
 import android.app.TabActivity;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
-import android.media.AudioManager;
-import android.media.MediaPlayer;
-import android.media.RingtoneManager;
-import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.ListView;
 import android.widget.TabHost;
 import android.widget.TextView;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+import java.util.ArrayList;
 
-import java.io.IOException;
-
-public class MainActivity extends TabActivity {
+public class MainActivity extends TabActivity implements MongoAdapter {
     // create the TabHost that will contain the Tabs
     /**
      * Called when the activity is first created.
      */
+    ArrayList<String> userStringArr;
+    String user;
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        Intent intent = getIntent();
-        String[] userStringArr = intent.getStringArrayExtra("users");
+    public String dbName() {
+        return getResources().getString(R.string.DataBase);
+    }
 
+    @Override
+    public String apiKey() {
+        return getResources().getString(R.string.API_KEY);
+    }
+    @Override
+    public void processResult(String result) throws JSONException {
+        JSONArray jsonarr = new JSONArray(result);
+        ArrayList<String> chatsArr =  new ArrayList<String>();
+        for (int i = 0; i < jsonarr.length(); i++) {
+            JSONObject row = jsonarr.getJSONObject(i);
+            chatsArr.add(row.getString("user"));
+        }
         TabHost tabHost = (TabHost) findViewById(android.R.id.tabhost);
-
         TabHost.TabSpec tab1 = tabHost.newTabSpec("First Tab");
         TabHost.TabSpec tab2 = tabHost.newTabSpec("Second Tab");
         TabHost.TabSpec tab3 = tabHost.newTabSpec("Third tab");
@@ -41,11 +44,14 @@ public class MainActivity extends TabActivity {
         // that will be opened when particular Tab will be selected
         tab1.setIndicator("Users");
         Intent users = new Intent(this, Act1.class);
-        users.putExtra("users" , userStringArr);
+        users.putStringArrayListExtra("users" , userStringArr);
         tab1.setContent(users);
 
         tab2.setIndicator("Chats");
-        tab2.setContent(new Intent(this, Act2.class));
+        Intent chats = new Intent(this, Act2.class);
+        chats.putStringArrayListExtra("chats" , chatsArr);
+        chats.putExtra("user" , user);
+        tab2.setContent(chats);
 
         tab3.setIndicator("Settings");
         tab3.setContent(new Intent(this, Act3.class));
@@ -55,7 +61,6 @@ public class MainActivity extends TabActivity {
         tabHost.addTab(tab1);
         tabHost.addTab(tab2);
         tabHost.addTab(tab3);
-
         tabHost.getTabWidget().getChildAt(0).setBackgroundColor(Color.WHITE);
         TextView tv1 = (TextView) tabHost.getTabWidget().getChildAt(0).findViewById(android.R.id.title);
         tv1.setTextColor(Color.rgb(100, 65, 165));
@@ -109,7 +114,15 @@ public class MainActivity extends TabActivity {
                 }
             }
         });
+    }
 
-
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        Intent intent = getIntent();
+        userStringArr = intent.getStringArrayListExtra("users");
+        user = intent.getStringExtra("user");
+        Mongo.get(this, user, new JSONObject());
     }
 }

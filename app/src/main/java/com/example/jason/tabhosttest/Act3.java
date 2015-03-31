@@ -1,14 +1,10 @@
 package com.example.jason.tabhosttest;
 import android.app.Activity;
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
-import android.view.Gravity;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
-
-import java.io.FileNotFoundException;
 import java.io.InputStream;
 
 public class Act3 extends Activity
@@ -49,5 +45,9 @@ public class Act3 extends Activity
       }
        // Button zero = (Button) this.findViewById(R.id.checkBox);
                // mp.pause();
+    }
+    public void Terms (View view) {
+        Intent i = new Intent(Act3.this, TermsOfUse.class);
+        startActivity(i);
     }
 }

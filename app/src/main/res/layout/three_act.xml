@@ -45,16 +45,14 @@
         android:onClick="onClick"
         android:nestedScrollingEnabled="false" />
 
-    <TextView
-        android:layout_width="wrap_content"
+    <Button
+        android:layout_width="151dp"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Terms of Use"
-        android:textColor="#6441a5"
-        android:id="@+id/textView4"
-        android:layout_gravity="bottom|center_horizontal"
-        android:layout_weight="0.07"
-        android:gravity="bottom"
-        android:paddingBottom="15dp" />
+        android:text="Terms Of Use"
+        android:id="@+id/button2"
+        android:layout_gravity="center_horizontal"
+        android:textColor="#FFFFFF"
+        android:background="#6441a5"
+        android:onClick="Terms" />
 
 </LinearLayout>

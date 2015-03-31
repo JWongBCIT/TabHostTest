@@ -7,17 +7,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
+import java.util.ArrayList;
 
 
 public class signUp extends Activity implements MongoAdapter {
@@ -50,9 +46,9 @@ public class signUp extends Activity implements MongoAdapter {
             }
         } catch (JSONException e) {
             Intent extra = getIntent();
-            String[] users  = extra.getStringArrayExtra("users");
+            ArrayList<String> users  = extra.getStringArrayListExtra("users");
             Intent i = new Intent(signUp.this, MainActivity.class);
-            i.putExtra("users" , users);
+            i.putStringArrayListExtra("users" , users);
             File file = new File(getApplicationContext().getFilesDir(), "user.txt");
             String filename = "user.txt";
             FileOutputStream outputStream;
@@ -73,6 +69,8 @@ public class signUp extends Activity implements MongoAdapter {
                 e1.printStackTrace();
             }
             Mongo.post(this, "users", json2);
+            Intent last = getIntent();
+            i.putExtra("user" , last.getStringExtra("user"));
             startActivity(i);
             finish();
         }

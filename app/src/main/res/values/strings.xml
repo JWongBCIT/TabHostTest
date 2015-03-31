@@ -16,5 +16,6 @@
     <string name="username">Username:</string>
     <string name="API_KEY">UxsBsBsL8QvTsZ_2zpgqmHU0ZBuI-Ewj</string>
     <string name="DataBase">bump</string>
+    <string name="title_activity_terms_of_use">TermsOfUse</string>
 
 </resources>
